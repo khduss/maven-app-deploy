@@ -1,4 +1,3 @@
-
 currentBuild.displayName = "maven-web-application-#"+currentBuild.number
 pipeline{
     agent any    
