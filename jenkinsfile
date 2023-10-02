@@ -16,15 +16,15 @@ pipeline{
         }
             stage('continuous upload/backup') {
             steps {
-                sh 'cp /root/.jenkins/workspace/maven-web-app-deploy/target/maven-web-application.war /root/apache/apache-tomcat-9.0.80/webapps'
-                sh 'cp /root/.jenkins/workspace/maven-web-app-deploy/target/maven-web-application.war /mnt/Backup_snapshot'
+                sh 'cp /root/var/lib/jenkins/workspace/maven-web-app-deploy/target/maven-web-application.war /root/apache/apache-tomcat-9.0.80/webapps'
+                sh 'cp /root/var/lib/jenkins/workspace/maven-web-app-deploy/target/maven-web-application.war /mnt/Backup_snapshot'
             }
                
         }
         stage('continuous Deliver on Webserver') {
             steps {
                 sh 'ssh root@172.31.0.173'
-                 sh 'scp /root/.jenkins/workspace/maven-web-app-deploy/target/maven-web-application.war root@172.31.0.173:/mnt/apache-tomcat-9.0.80/webapps'
+                 sh 'scp /root/var/lib/jenkins/workspace/maven-web-app-deploy/target/maven-web-application.war root@172.31.0.173:/mnt/apache-tomcat-9.0.80/webapps'
             }
         } 
 }
